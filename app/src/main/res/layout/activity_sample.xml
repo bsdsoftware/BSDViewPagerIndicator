@@ -8,11 +8,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <it.bsdsoftware.library.IndicatorContainer
+    <it.bsdsoftware.library.BSDIndicator
         android:id="@+id/indicator"
         android:padding="10dip"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        app:indicatorClickable="true"
+        app:backgroundColorDeselected="@color/black"
+        app:backgroundColorSelected="@color/green"
+        app:textColorSelected="@color/blue"
+        app:textColorDeselected="@color/white"
+        app:indicatorPadding="8"
+        app:indicatorMargin="8"
         />
 
 </RelativeLayout>

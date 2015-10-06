@@ -11,7 +11,7 @@ import android.widget.TextView;
 /**
  * Created by Simone on 06/10/15.
  */
-public class Indicator extends TextView {
+class Indicator extends TextView {
 
     private String textSelected = null;
     private String textDeselected = null;
@@ -81,10 +81,6 @@ public class Indicator extends TextView {
         this.typefaceTextSelected = selected;
         this.typefaceTextDeselected = deselected;
         isTypefaceCustom = true;
-    }
-
-    public boolean isStateSelected() {
-        return stateSelected;
     }
 
     public void setStateSelected(boolean stateSelected) {

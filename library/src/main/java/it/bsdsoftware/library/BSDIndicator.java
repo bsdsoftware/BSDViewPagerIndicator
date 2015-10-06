@@ -1,9 +1,11 @@
 package it.bsdsoftware.library;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -15,7 +17,7 @@ import java.util.List;
 /**
  * Created by Simone on 06/10/15.
  */
-public class IndicatorContainer extends LinearLayout {
+public class BSDIndicator extends LinearLayout {
 
     private ViewPager viewPager;
     private List<Indicator> indicators = new ArrayList<>();
@@ -43,22 +45,80 @@ public class IndicatorContainer extends LinearLayout {
     private boolean indicatorClickable = false;
 
 
-    public IndicatorContainer(Context context) {
+    public BSDIndicator(Context context) {
         super(context);
     }
 
-    public IndicatorContainer(Context context, AttributeSet attrs) {
+    public BSDIndicator(Context context, AttributeSet attrs) {
         super(context, attrs);
-        readAttributeSet(attrs);
+        readAttributeSet(context,attrs);
     }
 
-    public IndicatorContainer(Context context, AttributeSet attrs, int defStyleAttr) {
+    public BSDIndicator(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        readAttributeSet(attrs);
+        readAttributeSet(context,attrs);
     }
 
-    private void readAttributeSet(AttributeSet attrs){
+    private void readAttributeSet(Context context, AttributeSet attrs){
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.BSDIndicator);
+        text = a.getString(R.styleable.BSDIndicator_indicatorText);
+        textColorSelected = a.getColor(R.styleable.BSDIndicator_textColorSelected, Color.TRANSPARENT);
+        textColorDeselected = a.getColor(R.styleable.BSDIndicator_textColorDeselected, Color.TRANSPARENT);
+        backgroundColorSelected = a.getColor(R.styleable.BSDIndicator_backgroundColorSelected, Color.TRANSPARENT);
+        backgroundColorDeselected = a.getColor(R.styleable.BSDIndicator_backgroundColorDeselected, Color.TRANSPARENT);
+        int drawableSelected = a.getResourceId(R.styleable.BSDIndicator_backgroundDrawableSelected, -1);
+        if(drawableSelected != -1) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                backgroundDrawableSelected = getResources().getDrawable(drawableSelected, context.getTheme());
+            } else {
+                backgroundDrawableSelected = getResources().getDrawable(drawableSelected);
+            }
+        }
+        int drawableDeselected = a.getResourceId(R.styleable.BSDIndicator_backgroundDrawableDeselected, -1);
+        if(drawableDeselected != -1) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                backgroundDrawableDeselected = getResources().getDrawable(drawableDeselected, context.getTheme());
+            } else {
+                backgroundDrawableDeselected = getResources().getDrawable(drawableDeselected);
+            }
+        }
+        padding = a.getInt(R.styleable.BSDIndicator_indicatorPadding, 0);
+        margin = a.getInt(R.styleable.BSDIndicator_indicatorMargin, 0);
+        int enumTypefaceText = a.getInt(R.styleable.BSDIndicator_indicatorTextStyle, 0);
+        typefaceText = getTypeface(enumTypefaceText);
+        textSize = a.getInt(R.styleable.BSDIndicator_indicatorTextSize, -1);
+        int enumTypefaceTextSelected = a.getInt(R.styleable.BSDIndicator_indicatorTextStyleSelected, -1);
+        int enumTypefaceTextDeselected = a.getInt(R.styleable.BSDIndicator_indicatorTextStyleDeselected, -1);
+        if(enumTypefaceTextSelected>0 && enumTypefaceTextDeselected > 0) {
+            isTypefaceCustom = true;
+            typefaceTextSelected = getTypeface(enumTypefaceTextSelected);
+            typefaceTextDeselected = getTypeface(enumTypefaceTextDeselected);
+        }
+        textSizeSelected = a.getInt(R.styleable.BSDIndicator_indicatorTextSizeSelected, -1);
+        textSizeDeselected = a.getInt(R.styleable.BSDIndicator_indicatorTextSizeDeselected, -1);
+        if(textSizeDeselected>0 && textColorSelected > 0)
+            isTextSizeCustom = true;
+        indicatorClickable = a.getBoolean(R.styleable.BSDIndicator_indicatorClickable, false);
+        a.recycle();
+    }
 
+    private int getTypeface(int pos){
+        int typeface = Typeface.NORMAL;
+        switch (pos){
+            case 0:
+                typeface = Typeface.NORMAL;
+                break;
+            case 1:
+                typeface = Typeface.BOLD;
+                break;
+            case 2:
+                typeface = Typeface.ITALIC;
+                break;
+            case 3:
+                typeface = Typeface.BOLD_ITALIC;
+                break;
+        }
+        return typeface;
     }
 
     public void init(){

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BSDIndicator">
+        <attr name="indicatorText" format="string"/>
+        <attr name="backgroundDrawableSelected" format="reference"/>
+        <attr name="backgroundDrawableDeselected" format="reference"/>
+        <attr name="textColorSelected" format="color"/>
+        <attr name="textColorDeselected" format="color"/>
+        <attr name="backgroundColorSelected" format="color"/>
+        <attr name="backgroundColorDeselected" format="color"/>
+        <attr name="indicatorClickable" format="boolean" />
+        <attr name="indicatorPadding" format="integer" />
+        <attr name="indicatorMargin" format="integer" />
+        <attr name="indicatorTextSize" format="integer" />
+        <attr name="indicatorTextStyle" format="enum" >
+            <enum name="normal" value="0" />
+            <enum name="bold" value="1" />
+            <enum name="italic" value="2" />
+            <enum name="bold_italic" value="3" />
+        </attr>
+        <attr name="indicatorTextSizeSelected" format="integer" />
+        <attr name="indicatorTextStyleSelected" format="enum" >
+            <enum name="normal" value="0" />
+            <enum name="bold" value="1" />
+            <enum name="italic" value="2" />
+            <enum name="bold_italic" value="3" />
+        </attr>
+        <attr name="indicatorTextSizeDeselected" format="integer" />
+        <attr name="indicatorTextStyleDeselected" format="enum" >
+            <enum name="normal" value="0" />
+            <enum name="bold" value="1" />
+            <enum name="italic" value="2" />
+            <enum name="bold_italic" value="3" />
+        </attr>
+    </declare-styleable>
+</resources>

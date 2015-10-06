@@ -14,7 +14,7 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.bsdsoftware.library.IndicatorContainer;
+import it.bsdsoftware.library.BSDIndicator;
 
 public class SampleActivity extends AppCompatActivity {
 
@@ -31,19 +31,19 @@ public class SampleActivity extends AppCompatActivity {
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
 
-        IndicatorContainer indicator = (IndicatorContainer) findViewById(R.id.indicator);
+        BSDIndicator indicator = (BSDIndicator) findViewById(R.id.indicator);
 
         List<String> label = new ArrayList<>();
         for(int i : pages){
             label.add(""+i);
         }
-        indicator.setTextColorDeselected(Color.WHITE);
+       /* indicator.setTextColorDeselected(Color.WHITE);
         indicator.setTextColorSelected(Color.BLUE);
         indicator.setBackgroundColorSelected(Color.GREEN);
         indicator.setBackgroundColorDeselected(Color.BLACK);
         indicator.setPadding(8);
         indicator.setMargin(8);
-        indicator.setIndicatorClickable(true);
+        indicator.setIndicatorClickable(true);*/
         indicator.setLabelText(label);
         indicator.setViewPager(mPager);
     }
