@@ -8,6 +8,8 @@ Esempio di utilizzo nel progetto CNA Bologna.
 Utilizzo
 -----
 
+Layout
+---
 Includere `BSDIndicator` nel layout XML insieme al `ViewPager`.
 
 ```xml
