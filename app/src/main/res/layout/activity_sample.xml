@@ -22,6 +22,8 @@
         app:indicatorPadding="8"
         app:indicatorMargin="8"
         app:indicatorSquare="true"
+        app:indicatorTextSize="18"
+        app:indicatorTextStyle="bold_italic"
         />
 
 </RelativeLayout>
