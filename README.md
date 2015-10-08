@@ -8,8 +8,6 @@ Esempio di utilizzo nel progetto CNA Bologna.
 Utilizzo
 -----
 
-Layout
--
 Includere `BSDIndicator` nel layout XML insieme al `ViewPager`.
 
 ```xml
@@ -96,6 +94,45 @@ Se si vuole utilizzare stili diversi per la pagina selezionata e quella deselezi
 ```xml
     app:indicatorTextStyleDeselected="bold_italic"
     app:indicatorTextStyleSelected="bold_italic"
+```
+
+Se si vuole aggiungere un testo uguale in tutte le pagine si può utilizzare:
+```xml
+    app:indicatorText="P"
+```
+
+Se si vuole utilizzare un testo personalizzato per ogni pagina invece ci sono due modi. 
+Se si vuole un testo diverso per la pagina selezionata e deselezionata si utilizza:
+
+```java
+    indicator.setSelectedText(selected);
+    indicator.setDeselectedText(deselected);
+```
+Che accettano due liste di stringhe con i testi;
+
+Altrimenti se il testo per la pagina selezionata e deselezionata è sempre lo stesso:
+```java
+    indicator.setLabelText(label);
+```
+Che accetta sempre una lista di stringhe.
+
+
+Per inizializzare l'indicatore è necessario instanziarlo nell'Activity (o Fragment), impostare eventuali parametri e infine impostare il `ViewPager`.
+Impostare il `ViewPager` è essenziale, altrimenti non funziona. Quando viene chiamato il metodo `setViewPager`, il ViewPager deve essere già stato instanziato e avere un Adapter.
+Esempio:
+```java
+   BSDIndicator indicator = (BSDIndicator) findViewById(R.id.indicator);
+   
+   indicator.setTextColorDeselected(Color.WHITE);
+        indicator.setTextColorSelected(Color.BLUE);
+        indicator.setBackgroundColorSelected(Color.GREEN);
+        indicator.setBackgroundColorDeselected(Color.BLACK);
+        indicator.setPadding(8);
+        indicator.setMargin(8);
+        indicator.setIndicatorClickable(true);
+        indicator.setLabelText(label);
+        
+        indicator.setViewPager(mPager);
 ```
 
 
