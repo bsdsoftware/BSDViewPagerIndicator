@@ -43,6 +43,7 @@ public class BSDIndicator extends LinearLayout {
     private int typefaceTextDeselected = Typeface.NORMAL;
     private int textSizeDeselected = -1; // in sp
     private boolean indicatorClickable = false;
+    private boolean indicatorSquare = false;
 
 
     public BSDIndicator(Context context) {
@@ -99,6 +100,7 @@ public class BSDIndicator extends LinearLayout {
         if(textSizeDeselected>0 && textColorSelected > 0)
             isTextSizeCustom = true;
         indicatorClickable = a.getBoolean(R.styleable.BSDIndicator_indicatorClickable, false);
+        indicatorSquare = a.getBoolean(R.styleable.BSDIndicator_indicatorSquare, false);
         a.recycle();
     }
 
@@ -165,6 +167,9 @@ public class BSDIndicator extends LinearLayout {
             }
             this.addView(indicator);
             indicator.setMargins(margin);
+            if(indicatorSquare)
+                indicator.setSquare();
+
             indicators.add(indicator);
         }
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -341,5 +346,13 @@ public class BSDIndicator extends LinearLayout {
 
     public void setIndicatorClickable(boolean indicatorClickable) {
         this.indicatorClickable = indicatorClickable;
+    }
+
+    public boolean isIndicatorSquare() {
+        return indicatorSquare;
+    }
+
+    public void setIndicatorSquare(boolean indicatorSquare) {
+        this.indicatorSquare = indicatorSquare;
     }
 }

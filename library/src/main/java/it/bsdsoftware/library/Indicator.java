@@ -4,7 +4,12 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.Display;
+import android.view.Gravity;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -34,12 +39,33 @@ class Indicator extends TextView {
         super(context);
         textColorSelected = this.getTextColors().getDefaultColor();
         textColorDeselected = this.getTextColors().getDefaultColor();
+        this.setGravity(Gravity.CENTER);
     }
 
     public void setMargins(int margin){
         LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) getLayoutParams();
         lp.setMargins(margin, margin, margin, margin);
         this.setLayoutParams(lp);
+    }
+
+    public void setSize(int height, int width){
+        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) getLayoutParams();
+        lp.width = width;
+        lp.height = height;
+        this.setLayoutParams(lp);
+    }
+
+    public void setSquare(){
+        WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        DisplayMetrics metrics = new DisplayMetrics();
+        display.getMetrics(metrics);
+        int width = metrics.widthPixels;
+        int height = metrics.heightPixels;
+        this.measure(width, height);
+
+        int size = getMeasuredHeight() > getMeasuredWidth() ? getMeasuredHeight() : getMeasuredWidth();
+        setSize(size, size);
     }
 
     public void setText(String textSelected, String textDeselected) {
@@ -81,6 +107,10 @@ class Indicator extends TextView {
         this.typefaceTextSelected = selected;
         this.typefaceTextDeselected = deselected;
         isTypefaceCustom = true;
+    }
+
+    public boolean isStateSelected() {
+        return stateSelected;
     }
 
     public void setStateSelected(boolean stateSelected) {

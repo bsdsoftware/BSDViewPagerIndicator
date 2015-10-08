@@ -9,6 +9,7 @@
         <attr name="backgroundColorSelected" format="color"/>
         <attr name="backgroundColorDeselected" format="color"/>
         <attr name="indicatorClickable" format="boolean" />
+        <attr name="indicatorSquare" format="boolean" />
         <attr name="indicatorPadding" format="integer" />
         <attr name="indicatorMargin" format="integer" />
         <attr name="indicatorTextSize" format="integer" />
