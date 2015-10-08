@@ -95,7 +95,8 @@ Se si vuole utilizzare stili diversi per la pagina selezionata e quella deselezi
     app:indicatorTextStyleDeselected="bold_italic"
     app:indicatorTextStyleSelected="bold_italic"
 ```
-
+Testi
+--
 Se si vuole aggiungere un testo uguale in tutte le pagine si può utilizzare:
 ```xml
     app:indicatorText="P"
@@ -118,7 +119,10 @@ Che accetta sempre una lista di stringhe.
 
 
 Per inizializzare l'indicatore è necessario instanziarlo nell'Activity (o Fragment), impostare eventuali parametri e infine impostare il `ViewPager`.
-Impostare il `ViewPager` è essenziale, altrimenti non funziona. Quando viene chiamato il metodo `setViewPager`, il ViewPager deve essere già stato instanziato e avere un Adapter.
+
+Impostare il `ViewPager` è essenziale, altrimenti non funziona. 
+Quando viene chiamato il metodo `setViewPager`, il ViewPager deve essere già stato instanziato e avere un Adapter.
+
 Esempio:
 ```java
    BSDIndicator indicator = (BSDIndicator) findViewById(R.id.indicator);
@@ -134,7 +138,6 @@ Esempio:
         
         indicator.setViewPager(mPager);
 ```
-
 
 
 Download
